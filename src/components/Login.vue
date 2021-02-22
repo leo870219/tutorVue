@@ -14,46 +14,30 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      name: '',
-      nickName: '',
-      email: '',
-      gender: '',
-      studentCase: '',
-      teacherCase: '',
-      token: '',
-      priority: '',
-      point: '',
-      school: '',
-      goodAt: '',
-      weakAt: '',
-      authId: '',
-      authCom: ''
+      'userName': '',
+      'userNickName': '',
+      'userGender': '',
+      'userEmail': '',
+      'userAuthId': '',
+      'userAuthFrom': ''
     }
   },
   methods: {
     test () {
       axios({
         method: 'post',
-        url: 'http://localhost:5000/login',
+        url: 'http://localhost:5000/login/',
         data: {
-          name: '',
-          nickName: '',
-          email: 'asdzxccxz333@gmail.com',
-          gender: '',
-          studentCase: '',
-          teacherCase: '',
-          token: '',
-          priority: '',
-          point: '',
-          school: '',
-          goodAt: '',
-          weakAt: '',
-          authId: '',
-          authCom: ''
+          'userName': this.userName,
+          'userNickName': this.userNickName,
+          'userGender': this.userGender,
+          'userEmail': this.userEmail,
+          'userAuthId': this.userAuthId,
+          'userAuthFrom': this.userAuthFrom
         }
       })
         .then((response) => {
-          console.log(response)
+          console.log(response.data)
         })
         .catch((error) => {
           console.log(error)
@@ -66,7 +50,7 @@ export default {
           (GoogleUser) => {
             console.log('Google登入成功')
             let AuthResponse = GoogleUser.getAuthResponse(true) // true會回傳包含access token ，false則不會
-            this.authId = AuthResponse.id_token // 取得id_token
+            this.userAuthId = AuthResponse.id_token // 取得id_token
             gapi.client.people.people
               .get({
                 resourceName: 'people/me',
@@ -78,8 +62,8 @@ export default {
                   console.log(
                     `${res.result.birthdays[0].date.month}/${res.result.birthdays[0].date.day}`
                   )
-                  this.name = res.result.names[0].displayName
-                  this.email = res.result.emailAddresses[0].value
+                  this.userName = res.result.names[0].displayName
+                  this.userEmail = res.result.emailAddresses[0].value
                 },
                 (err) => {
                   console.log(err)
