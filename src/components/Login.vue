@@ -10,30 +10,30 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../commons/axios'
 export default {
   data () {
     return {
-      'userName': '',
-      'userNickName': '',
-      'userGender': '',
-      'userEmail': '',
-      'userAuthId': '',
-      'userAuthFrom': ''
+      userName: '',
+      userNickName: '',
+      userGender: '',
+      userEmail: '',
+      userAuthId: '',
+      userAuthFrom: ''
     }
   },
   methods: {
     test () {
       axios({
         method: 'post',
-        url: 'http://localhost:5000/login/',
+        url: '/login',
         data: {
-          'userName': this.userName,
-          'userNickName': this.userNickName,
-          'userGender': this.userGender,
-          'userEmail': this.userEmail,
-          'userAuthId': this.userAuthId,
-          'userAuthFrom': this.userAuthFrom
+          userName: this.userName,
+          userNickName: this.userNickName,
+          userGender: this.userGender,
+          userEmail: this.userEmail,
+          userAuthId: this.userAuthId,
+          userAuthFrom: this.userAuthFrom
         }
       })
         .then((response) => {
@@ -59,9 +59,6 @@ export default {
               })
               .then(
                 (res) => {
-                  console.log(
-                    `${res.result.birthdays[0].date.month}/${res.result.birthdays[0].date.day}`
-                  )
                   this.userName = res.result.names[0].displayName
                   this.userEmail = res.result.emailAddresses[0].value
                 },
