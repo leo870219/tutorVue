@@ -1,21 +1,12 @@
 <template>
   <div id="app">
-    <Login />
-    <User />
+    <router-link to="/">Login</router-link> |
+    <router-link to="/user/nickname">User</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Login from './components/Login.vue'
-import User from './components/User.vue'
-
-export default {
-  name: 'App',
-  components: {
-    Login,
-    User
-  }
-}
 </script>
 
 <style>
