@@ -1,5 +1,5 @@
 <template>
-  <div id="userschool">
+  <div id="school">
     <div id="block">
       <h1>請輸入學校:</h1>
       <input type="text" v-model="userschool" />
@@ -16,9 +16,6 @@ export default {
   name: 'School',
   data () {
     return {
-      userbirthday: this.$route.query.userbirthday,
-      usernickname: this.$route.query.usernickname,
-      usergender: this.$route.query.usergender,
       userschool: ''
     }
   },
@@ -28,14 +25,10 @@ export default {
     },
     next () {
       gsap.to('#block', { duration: 2, x: 1200, opacity: 0 })
+      this.$store.commit('getSchool', this.userschool)
+      console.log(this.$store.state.school)
       this.$router.push({
-        path: 'GoodAt',
-        query: {
-          userbirthday: this.userbirthday,
-          usernickname: this.usernickname,
-          usergender: this.usergender,
-          userschool: this.userschool
-        }
+        path: 'GoodAt'
       })
     }
   },

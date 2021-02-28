@@ -1,10 +1,10 @@
 <template>
-  <div id="userweakat">
+  <div id="weakat">
     <div id="block">
       <h1>請輸入不擅長的事:</h1>
       <input type="text" v-model="userweakat" />
       <br />
-      <button @click="next()">提交資料開始配對囉!</button>
+      <button @click="submit()">提交資料開始配對囉!</button>
     </div>
   </div>
 </template>
@@ -12,15 +12,11 @@
 <script>
 import gsap from 'gsap'
 // 引入gsap製作動畫
+import axios from '../commons/axios'
 export default {
   name: 'WeakAt',
   data () {
     return {
-      userbirthday: this.$route.query.userbirthday,
-      usernickname: this.$route.query.usernickname,
-      usergender: this.$route.query.usergender,
-      userschool: this.$route.query.userschool,
-      usergoodat: this.$route.query.usergoodat,
       userweakat: ''
     }
   },
@@ -28,17 +24,22 @@ export default {
     out () {
       gsap.to('#block', { duration: 2, x: 1200, opacity: 0 })
     },
-    next () {
+    submit () {
       gsap.to('#block', { duration: 2, x: 1200, opacity: 0 })
-      this.$router.push({
-        path: 'WeakAt',
-        query: {
-          userbirthday: this.userbirthday,
-          usernickname: this.usernickname,
-          usergender: this.usergender,
-          userschool: this.userschool,
-          usergoodat: this.usergoodat,
-          userweakat: ''
+      this.$store.commit('getWeakAt', this.userweakat)
+      axios({
+        method: 'post',
+        url: '/user/info/update',
+        data: {
+          name: this.$store.state.name,
+          email: this.$store.state.email,
+          authId: this.$store.state.authId,
+          nickName: this.$store.state.nickName,
+          gender: this.$store.state.gender,
+          birthday: this.$store.state.birthday,
+          school: this.$store.state.school,
+          goodAt: this.$store.state.goodAt,
+          weakAt: this.$store.state.weakAt
         }
       })
     }

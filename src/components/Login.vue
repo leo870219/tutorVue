@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="login">
     <button type="button" id="btnSignIn" @click="login">Google登入</button>
     <button type="button" id="btnDisconnect" @click="disconnect">
       斷連Google App
@@ -15,11 +15,8 @@ export default {
   data () {
     return {
       userName: '',
-      userNickName: '',
-      userGender: '',
       userEmail: '',
-      userAuthId: '',
-      userAuthFrom: ''
+      userAuthId: ''
     }
   },
   methods: {
@@ -29,11 +26,8 @@ export default {
         url: '/login',
         data: {
           userName: this.userName,
-          userNickName: this.userNickName,
-          userGender: this.userGender,
           userEmail: this.userEmail,
-          userAuthId: this.userAuthId,
-          userAuthFrom: this.userAuthFrom
+          userAuthId: this.userAuthId
         }
       })
         .then((response) => {
@@ -54,13 +48,15 @@ export default {
             gapi.client.people.people
               .get({
                 resourceName: 'people/me',
-                personFields:
-                  'names,phoneNumbers,emailAddresses,addresses,genders,birthdays'
+                personFields: 'names,emailAddresses,'
               })
               .then(
                 (res) => {
                   this.userName = res.result.names[0].displayName
                   this.userEmail = res.result.emailAddresses[0].value
+                  this.$store.commit('getName', this.userName)
+                  this.$store.commit('getEmail', this.userEmail)
+                  this.$store.commit('getAuthId', this.userAuthId)
                 },
                 (err) => {
                   console.log(err)

@@ -21,9 +21,10 @@ export default {
   methods: {
     out () {
       gsap.to('#block', { duration: 2, x: 1200, opacity: 0 })
+      this.$store.commit('getNickName', this.usernickname)
+      console.log(this.$store.state.nickName)
       this.$router.push({
-        path: 'gender',
-        query: { usernickname: this.usernickname }
+        path: 'gender'
       })
     }
   },

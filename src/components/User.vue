@@ -1,13 +1,11 @@
 <template>
   <div class="user">
-    <router-view></router-view>
+    <router-view class='nickname'></router-view>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'User'
-}
+export default {}
 </script>
 
 <style>

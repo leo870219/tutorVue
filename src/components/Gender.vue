@@ -18,7 +18,6 @@ export default {
   name: 'Gender',
   data () {
     return {
-      usernickname: this.$route.query.usernickname,
       usergender: '1'
     }
   },
@@ -29,16 +28,11 @@ export default {
   methods: {
     next () {
       gsap.to('#block', { duration: 2, x: 1200, opacity: 0 })
-      setTimeout(
-        this.$router.push({
-          path: 'birthday',
-          query: {
-            usernickname: this.usernickname,
-            usergender: this.usergender
-          }
-        }),
-        6000
-      )
+      this.$store.commit('getGender', this.usergender)
+      console.log(this.$store.state.gender)
+      this.$router.push({
+        path: 'birthday'
+      })
     }
   }
 }

@@ -26,9 +26,7 @@ export default {
     return {
       month: 1,
       day: 1,
-      userbirthday: '',
-      usernickname: this.$route.query.usernickname,
-      usergender: this.$route.query.usergender
+      userbirthday: ''
     }
   },
   methods: {
@@ -37,13 +35,10 @@ export default {
     },
     next () {
       gsap.to('#block', { duration: 2, x: 1200, opacity: 0 })
+      this.$store.commit('getBirthday', this.userbirthday)
+      console.log(this.$store.state.birthday)
       this.$router.push({
-        path: 'school',
-        query: {
-          usernickname: this.usernickname,
-          usergender: this.usergender,
-          userbirthday: this.userbirthday
-        }
+        path: 'school'
       })
     }
   },

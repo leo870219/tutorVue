@@ -1,5 +1,5 @@
 <template>
-  <div id="usergoodat">
+  <div id="goodat">
     <div id="block">
       <h1>請輸入興趣、專長:</h1>
       <input type="text" v-model="usergoodat" />
@@ -16,10 +16,6 @@ export default {
   name: 'GoodAt',
   data () {
     return {
-      userbirthday: this.$route.query.userbirthday,
-      usernickname: this.$route.query.usernickname,
-      usergender: this.$route.query.usergender,
-      userschool: this.$route.query.userschool,
       usergoodat: ''
     }
   },
@@ -29,15 +25,10 @@ export default {
     },
     next () {
       gsap.to('#block', { duration: 2, x: 1200, opacity: 0 })
+      this.$store.commit('getGoodAt', this.usergoodat)
+      console.log(this.$store.state.goodAt)
       this.$router.push({
-        path: 'WeakAt',
-        query: {
-          userbirthday: this.userbirthday,
-          usernickname: this.usernickname,
-          usergender: this.usergender,
-          userschool: this.userschool,
-          usergoodat: this.usergoodat
-        }
+        path: 'WeakAt'
       })
     }
   },
