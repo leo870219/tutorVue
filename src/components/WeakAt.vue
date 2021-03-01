@@ -42,6 +42,12 @@ export default {
           weakAt: this.$store.state.weakAt
         }
       })
+        .then((response) => {
+          console.log(response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   },
   mounted () {
