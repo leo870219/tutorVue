@@ -3,7 +3,7 @@
     <div id="block">
       <h1>請輸入綽號:</h1>
       <input type="text" v-model="usernickname" /><br />
-      <button class="button" @click="out()">確認</button>
+      <button class="button" @click="out()">增加更多機會</button>
     </div>
   </div>
 </template>
