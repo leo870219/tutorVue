@@ -5,8 +5,14 @@ import App from './App'
 import router from './router'
 import VueGapi from 'vue-gapi'
 import Vuex from 'vuex'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.use(Vuex)
 Vue.config.productionTip = false
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 
 const store = new Vuex.Store({
   state: {
