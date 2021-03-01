@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <router-link to="/">Login</router-link> |
-    <router-link to="/user/nickname">User</router-link>
+    <router-link to="/user/nickname">User</router-link> |
+    <router-link to="/profile">Profile</router-link>
     <router-view></router-view>
   </div>
 </template>
