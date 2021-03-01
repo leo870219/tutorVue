@@ -2,16 +2,7 @@
   <div id="birthday">
     <div id="block">
       <h1>您的生日是:</h1>
-      <select v-model="month" @change="get()">
-        <option v-for="option in 12" v-bind:key="option" v-bind:value="option">
-          {{ option }}
-        </option>
-      </select>
-      <select v-model="day" @change="get()">
-        <option v-for="option in 30" v-bind:key="option" v-bind:value="option">
-          {{ option }}
-        </option>
-      </select>
+      <date-picker v-model="userbirthday" valueType="format"></date-picker>
       <br />
       <button @click="next()">增加更多機會</button>
     </div>
@@ -19,14 +10,15 @@
 </template>
 
 <script>
+import DatePicker from 'vue2-datepicker'
+import 'vue2-datepicker/index.css'
 import gsap from 'gsap'
 export default {
+  components: { DatePicker },
   name: 'Birthday',
   data () {
     return {
-      month: 1,
-      day: 1,
-      userbirthday: ''
+      userbirthday: null
     }
   },
   methods: {
