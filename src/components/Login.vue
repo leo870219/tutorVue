@@ -16,7 +16,8 @@ export default {
     return {
       userName: '',
       userEmail: '',
-      userAuthId: ''
+      userAuthId: '',
+      userAuthFrom: 'google'
     }
   },
   methods: {
@@ -27,7 +28,8 @@ export default {
         data: {
           userName: this.userName,
           userEmail: this.userEmail,
-          userAuthId: this.userAuthId
+          userAuthId: this.userAuthId,
+          userAuthFrom: this.userAuthFrom
         }
       })
         .then((response) => {
