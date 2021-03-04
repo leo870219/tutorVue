@@ -3,7 +3,6 @@
     <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure"
       >Login</GoogleLogin
     >
-    <button type="button" @click="test">測試發請求</button>
   </div>
 </template>
 
@@ -33,11 +32,6 @@ export default {
       this.userName = profile.getName()
       this.userEmail = profile.getEmail()
       this.userAuthId = userAuthId
-    },
-    onFailure () {
-      alert('登入失敗')
-    },
-    test () {
       axios({
         method: 'post',
         url: '/login',
@@ -50,10 +44,18 @@ export default {
       })
         .then((response) => {
           console.log(response.data)
+          if (!response.data.first) {
+            this.$router.push({path: 'home'})
+          } else {
+            this.$router.push({path: 'user'})
+          }
         })
         .catch((error) => {
           console.log(error)
         })
+    },
+    onFailure () {
+      alert('登入失敗')
     }
   }
 }
