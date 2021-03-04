@@ -14,8 +14,16 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "ajv": "^6.9.1",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.21.2",
+    "jquery": "^3.5.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-google-login": "^2.0.5",
+    "vue-router": "^3.0.1",
+    "vue2-datepicker": "^3.9.0",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -45,7 +53,7 @@
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
-    "eslint-plugin-vue": "^4.0.0",
+    "eslint-plugin-vue": "^4.7.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
