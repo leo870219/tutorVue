@@ -1,5 +1,6 @@
 <template>
   <div id="profile">
+      store: {{$store.state.userInfo.email}}
       <h1>個人頁面</h1>
       <table id="personalinfo" align="center" cellpadding="5px" >
         <tr>
