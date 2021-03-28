@@ -34,6 +34,7 @@
 
 <script>
 import '@google-pay/button-element';
+import axios from '../commons/axios'
 export default {
   name: 'Payment',
     props: {},
@@ -70,12 +71,40 @@ export default {
   methods: {
     onLoadPaymentData: event => {
       console.log('load payment data', event.detail);
+      // send to database
     },
     onError: event => {
       console.error('error', event.error);
     },
     onPaymentDataAuthorized: paymentData => {
       console.log('payment authorized', paymentData);
+      this.type = paymentData.paymentMethodData.type;
+      this.cardDetails = paymentData.paymentMethodData.info.cardDetails;
+      this.cardNetwork = paymentData.paymentMethodData.info.cardNetwork;
+      this.token = paymentData.paymentMethodData.tokenizationData.token;
+      this.tokenType = paymentData.paymentMethodData.tokenizationData.type;
+      axios({
+        method: 'post',
+        url: '/payment',
+        data: {
+          type: this.type,
+          cardDetails: this.cardDetails,
+          cardNetwork: this.cardNetwork,
+          token: this.token,
+          tokenType: this.tokenType
+        }
+      })
+        .then((response) => {
+          console.log(response.data)
+          // if (!response.data.first) {
+          //   this.$router.push({path: 'home'})
+          // } else {
+          //   this.$router.push({path: 'user'})
+          // }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
       return {
         transactionState: 'SUCCESS',
       };
@@ -94,19 +123,7 @@ export default {
 #payment {
   text-align: center;
 }
-.td1 {
-  text-align: left;
-  color: brown;
-}
 .button {
   margin-top: 4em;
-}
-input[type="text"] {
-  padding: 5px 15px;
-  border: 2px sandybrown solid;
-  cursor: pointer;
-  /* -webkit-border-radius: 5px; */
-  border-radius: 5px;
-  color: brown;
 }
 </style>
