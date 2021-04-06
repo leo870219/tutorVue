@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import Profile from '@/components/Profile'
 import Payment from '@/components/Payment'
 import InputUserInfo from '@/components/InputUserInfo'
+import AddCase from '@/components/addCase'
 import Home from '@/views/Home'
 
 Vue.use(Router)
@@ -35,6 +36,11 @@ export default new Router({
       path: '/home',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/addCase',
+      name: 'AddCase',
+      component: AddCase
     }
   ]
 })

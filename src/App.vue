@@ -3,7 +3,8 @@
     <router-link to="/">Login</router-link> |
     <router-link to="/user">User</router-link> |
     <router-link to="/profile">Profile</router-link> |
-    <router-link to="/payment">Payment</router-link>
+    <router-link to="/payment">Payment</router-link> |
+    <router-link to="/addCase">AddCase</router-link>
     <router-view></router-view>
   </div>
 </template>

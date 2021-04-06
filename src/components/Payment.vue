@@ -39,7 +39,7 @@ export default {
   name: 'Payment',
     props: {},
     data:  () => ({
-      amount: '10.00',
+      amount: '20.00',
       existingPaymentMethodRequired: true,
       buttonColor: 'default',
       buttonType: 'buy',
@@ -76,38 +76,43 @@ export default {
     onError: event => {
       console.error('error', event.error);
     },
-    onPaymentDataAuthorized: paymentData => {
+    onPaymentDataAuthorized: async  (paymentData) => {
       console.log('payment authorized', paymentData);
+      let vm = this
       this.type = paymentData.paymentMethodData.type;
       this.cardDetails = paymentData.paymentMethodData.info.cardDetails;
       this.cardNetwork = paymentData.paymentMethodData.info.cardNetwork;
       this.token = paymentData.paymentMethodData.tokenizationData.token;
       this.tokenType = paymentData.paymentMethodData.tokenizationData.type;
-      axios({
-        method: 'post',
-        url: '/payment',
-        data: {
-          type: this.type,
-          cardDetails: this.cardDetails,
-          cardNetwork: this.cardNetwork,
-          token: this.token,
-          tokenType: this.tokenType
-        }
-      })
-        .then((response) => {
-          console.log(response.data)
-          // if (!response.data.first) {
-          //   this.$router.push({path: 'home'})
-          // } else {
-          //   this.$router.push({path: 'user'})
-          // }
+      return new Promise(function(resolve, reject){
+        // handle the response
+        axios({
+          method: 'post',
+          url: '/payment',
+          data: {
+            type: vm.type,
+            cardDetails: vm.cardDetails,
+            cardNetwork: vm.cardNetwork,
+            token: vm.token,
+            tokenType: vm.tokenType
+          }
         })
-        .catch((error) => {
-          console.log(error)
+        .then(function() {
+          resolve({transactionState: 'SUCCESS'});
         })
-      return {
-        transactionState: 'SUCCESS',
-      };
+        .catch(function(err) {
+          console.log(err)
+          resolve({
+            transactionState: 'ERROR',
+            error: {
+              intent: 'PAYMENT_AUTHORIZATION',
+              message: 'something wrong in backend',
+              // message: 'Insufficient funds',
+              reason: 'PAYMENT_DATA_INVALID'
+            }
+          });
+        });
+      });
     },
 
     out () {
