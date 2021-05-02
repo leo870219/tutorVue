@@ -7,7 +7,12 @@ import Vuex from 'vuex'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VueGapi from 'vue-gapi'
 
+Vue.use(VueGapi, {
+  clientId: '238605304260-m6fi213b862ujp8n06ijj3kft1olu9sd.apps.googleusercontent.com',
+  scope: 'profile'
+})
 Vue.use(Vuex)
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
