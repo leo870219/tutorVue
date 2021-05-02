@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import Profile from '@/components/Profile'
+import Payment from '@/components/Payment'
 import InputUserInfo from '@/components/InputUserInfo'
 import Home from '@/views/Home'
 
@@ -19,6 +20,11 @@ export default new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile
+    },
+    {
+      path: '/payment',
+      name: 'Payment',
+      component: Payment
     },
     {
       path: '/user',
