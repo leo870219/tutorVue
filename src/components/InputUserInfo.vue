@@ -1,58 +1,92 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <transition name="slide-fade">
       <div v-if="inputUserNickname">
         <div id="block">
-          <h1>請輸入綽號:</h1>
-          <input type="text" v-model="userNickname" /><br />
-          <button class="button" @click="goToGender()">增加更多機會</button>
+          <div class="title justify-content-center">
+            <h6>輸入綽號</h6>
+          </div>
+          <div class="inputUserInfo-main">
+            <div class="justify-content-center">
+              <input type="text" v-model="userNickname" />
+            </div>
+            <div class="justify-content-center">
+              <button class="button" @click="goToGender()">增加更多機會</button>
+            </div>
+          </div>
         </div>
       </div>
 
       <div v-if="inputGender">
         <div id="block">
-          <h1></h1>
-          <input type="radio" name="gender" value="1" v-model="userGender" />
-          男性<br />
-          <input type="radio" name="gender" value="0" v-model="userGender" />
-          女性<br />
-          <button @click="goToBirthday()">增加更多機會</button><br />
+          <div class="title justify-content-center">
+            <h6>性別</h6>
+          </div>
+          <div class="inputUserInfo-main">
+            <input type="radio" name="gender" value="1" v-model="userGender" />
+            男性<br />
+            <input type="radio" name="gender" value="0" v-model="userGender" />
+            女性<br />
+            <button class="button" @click="goToBirthday()">增加更多機會</button
+            ><br />
+          </div>
         </div>
       </div>
 
       <div v-if="inputBirthday">
         <div id="block">
-          <h1>您的生日是:</h1>
-          <date-picker v-model="userBirthday" valueType="format"></date-picker>
-          <br />
-          <button @click="goToSchool()">增加更多機會</button>
+          <div class="title justify-content-center">
+            <h6>選擇生日</h6>
+          </div>
+          <div class="inputUserInfo-main">
+            <date-picker
+              v-model="userBirthday"
+              valueType="format"
+            ></date-picker>
+            <br />
+            <button class="button" @click="goToSchool()">增加更多機會</button>
+          </div>
         </div>
       </div>
 
       <div v-if="inputSchool">
         <div id="block">
-          <h1>請輸入學校:</h1>
-          <input type="text" v-model="userSchool" />
-          <br />
-          <button @click="goToGoodAt()">增加更多機會</button>
+          <div class="title justify-content-center">
+            <h6>輸入學校</h6>
+          </div>
+          <div class="inputUserInfo-main">
+            <input type="text" v-model="userSchool" />
+            <br />
+            <button class="button" @click="goToGoodAt()">增加更多機會</button>
+          </div>
         </div>
       </div>
 
       <div v-if="inputGoodAt">
         <div id="block">
-          <h1>請輸入興趣、專長:</h1>
-          <input type="text" v-model="userGoodAt" />
-          <br />
-          <button @click="goToWeakAt()">增加更多機會</button>
+          <div class="title justify-content-center">
+            <h6>輸入興趣專長</h6>
+          </div>
+          <div class="inputUserInfo-main">
+            <input type="text" v-model="userGoodAt" />
+            <br />
+            <button class="button" @click="goToWeakAt()">增加更多機會</button>
+          </div>
         </div>
       </div>
 
       <div v-if="inputWeakAt">
         <div id="block">
-          <h1>請輸入不擅長的事:</h1>
-          <input type="text" v-model="userWeakAt" />
-          <br />
-          <button @click="submit()">提交資料開始配對囉!</button>
+          <div class="title justify-content-center">
+            <h6>輸入不擅長的事</h6>
+          </div>
+          <div class="inputUserInfo-main">
+            <input type="text" v-model="userWeakAt" />
+            <br />
+            <button class="button" @click="submit()">
+              提交資料開始配對囉!
+            </button>
+          </div>
         </div>
       </div>
     </transition>
@@ -155,16 +189,39 @@ export default {
 </script>
 
 <style scoped>
+.container-fluid {
+  background-image: url("../../static/background.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
 #block {
-  border-radius: 20%;
-  background-color: rgba(241, 223, 115, 0.829);
-  height: 20em;
+  text-align: center;
   width: 20em;
-  margin: 0 auto;
-  float: none;
+  height: 20em;
+  border-radius: 1em;
+  background-color: white;
+}
+.title {
+  background: linear-gradient(to right, rgb(179, 212, 111), rgb(230, 249, 98));
+  padding: 1em 0;
+  border-radius: 1em 1em 0 0;
+}
+.title h6 {
+  letter-spacing: 1em;
+}
+.inputUserInfo-main {
+  margin-top: 5em;
 }
 .button {
-  margin-top: 7em;
+  margin-top: 3em;
+  background: linear-gradient(to right, rgb(179, 212, 111), rgb(230, 249, 98));
+  border: 0px;
+  border-radius: 1em;
+  letter-spacing: 0.5em;
 }
 .slide-fade-enter-active {
   transition: all 0.8s ease;
