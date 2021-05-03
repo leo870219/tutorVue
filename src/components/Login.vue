@@ -5,7 +5,9 @@
         <div class="about-us">
           <button
             :class="[
-              this.aboutUsPage ? 'login-header-clicked' : 'login-header-default',
+              this.aboutUsPage
+                ? 'login-header-clicked'
+                : 'login-header-default',
             ]"
             @click="openAboutUsPage"
           >
@@ -15,9 +17,7 @@
         <div class="login">
           <button
             :class="[
-              this.loginPage
-                ? 'login-header-clicked'
-                : 'login-header-default',
+              this.loginPage ? 'login-header-clicked' : 'login-header-default',
             ]"
             @click="openLoginPage"
           >
@@ -35,7 +35,6 @@
           <div class="login-google">
             <input type="button" @click="login" />
           </div>
-
         </div>
       </div>
       <div v-else class="about-us-main"></div>
@@ -78,6 +77,9 @@ export default {
           this.userName = profile.getName()
           this.userEmail = profile.getEmail()
           this.userAuthId = userAuthId
+          this.$store.commit('getName', profile.getName())
+          this.$store.commit('getEmail', profile.getEmail())
+          this.$store.commit('getAuthId', userAuthId)
           axios({
             method: 'post',
             url: '/login',
